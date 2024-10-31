@@ -1,6 +1,7 @@
 # powerOfX
 
 This is a simple program that checks if <em>n</em> is a power of <em>x</em>
+
 Note: For this program, both <em>n</em> and <em>x</em> must be positive.
 
 ## Requirements
