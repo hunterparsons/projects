@@ -1,8 +1,19 @@
 #include "head.h"
 #include <iostream>
 
+// Purpose : prints main menu at the beginning of each loop.
+// Pre : none.
+// Post : outputs the main menu to the console.
 void printMainMenu();
+
+// Purpose : prints menu for student details.
+// Pre : none.
+// Post : outputs the student details menu to the console.
 void printDetailedMenu();
+
+// Purpose : gets the grade for the student.
+// Pre : none.
+// Post : if 'k' or 'K' is input, then grade is set to 0, else simply uses grade input.
 int getGrade();
 
 int main() {
@@ -26,9 +37,7 @@ int main() {
 			std::cout << "Please enter the grade you'd like to view (K - 12) : ";
 			grade = getGrade();
 			try {
-				if(mySchool.validateGrade(grade)) {
-					mySchool.printGrade(grade);
-				}
+				mySchool.printGrade(grade);
 			} catch(std::string caught) {
 				std::cout << caught;
 			}
@@ -41,9 +50,7 @@ int main() {
 			std::cout << "Grade : ";
 			grade = getGrade();
 			try {
-				if (mySchool.validateGrade(grade)) {
 					mySchool.addStudent(grade, firstName, lastName);
-				}
 			} catch (std::string caught) {
 				std::cout << caught;
 			}
@@ -90,7 +97,11 @@ int main() {
 							} else if (command == 'r' || command == 'R') { // remove subject
 								std::cout << "Subject name : ";
 								std::cin >> subjectName;
-								mySchool.rmSubjectFromStudent(theStudent, subjectName);
+								try {
+									mySchool.rmSubjectFromStudent(theStudent, subjectName);
+								} catch (std::string caught) {
+									std::cout << caught;
+								}
 							} else if (command == 'b' || command == 'B') { // go back
 
 							} else { // input validation
@@ -145,7 +156,7 @@ int main() {
 }
 
 void printMainMenu() {
-	std::cout << "Choose Action:\n P) Print all students\n G) Print one grade\n A) Add student\n R) Remove student\n D) Print details of specific student\n C) Clear Students\n S) Save\n Q) Quit" << std::endl;
+	std::cout << "Choose Action:\n P) Print all students\n G) Print one grade\n A) Add student\n R) Remove student\n D) Print details of specific student\n C) Clear students\n S) Save\n Q) Quit" << std::endl;
 }
 
 void printDetailedMenu() {
