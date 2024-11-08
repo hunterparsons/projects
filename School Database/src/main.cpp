@@ -23,14 +23,15 @@ int main() {
 	double classGrade;
 	char command;
 	
+	// Inputs data from infile to mySchool
 	std::ifstream infile("data.txt");
 	mySchool.input(infile);
 	infile.close();
 
-	do {
+	do { // main loop for full program
 		printMainMenu();
 		std::cin >> command;
-		if(command == 'p' || command == 'P') {
+		if(command == 'p' || command == 'P') { // print all students
 			mySchool.printStudents();
 		} else if (command == 'g' || command == 'G') {
 			std::cin.clear();
@@ -41,7 +42,7 @@ int main() {
 			} catch(std::string caught) {
 				std::cout << caught;
 			}
-		} else if (command == 'a' || command == 'A') {
+		} else if (command == 'a' || command == 'A') { // add student
 			std::cin.clear();
 			std::cout << "First Name : ";
 			std::cin >> firstName;
@@ -54,7 +55,7 @@ int main() {
 			} catch (std::string caught) {
 				std::cout << caught;
 			}
-		} else if (command == 'd' || command == 'D') {
+		} else if (command == 'd' || command == 'D') { // print details of one student
 			std::cin.clear();
 			std::cout << "First Name : ";
 			std::cin >> firstName;
@@ -64,7 +65,7 @@ int main() {
 			grade = getGrade();
 			try {
 				if (mySchool.validateGrade(grade)) {
-					do {
+					do { // loop for detailed student
 						auto theStudent = mySchool.getStudent(grade, firstName, lastName);
 						// Checks if the student exists if they don't, asks if they want to add them 
 						if (!mySchool.doesExist(grade, theStudent)) { 
@@ -80,7 +81,7 @@ int main() {
 								std::cin.clear();
 							} while(command != 'y' && command != 'Y' && command != 'n' && command != 'N');
 						}
-						if (command != 'n' && command !='N') {
+						if (command != 'n' && command !='N') { // if the student didn't exist and the user said no
 							mySchool.printDetailsFromData(theStudent);
 							printDetailedMenu();
 							std::cin >> command;
@@ -133,9 +134,9 @@ int main() {
 			} catch (std::string caught) {
 				std::cout << caught;
 			}
-		} else if (command == 'c' || command == 'C') {
+		} else if (command == 'c' || command == 'C') { // clears database
 			mySchool.clear();
-		} else if (command == 's' || command == 'S') {
+		} else if (command == 's' || command == 'S') { // saves program to outfile
 			std::ofstream outfile("data.txt");
 			mySchool.output(outfile);
 			outfile.close();

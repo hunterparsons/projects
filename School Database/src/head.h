@@ -13,8 +13,11 @@ class Subject {
 		std::string subjectName;
 		double classGrade;
 	public:
+		// Constructors
 		Subject() : subjectName(""), classGrade(100) {}
 		Subject(std::string sName, double cGrade) : subjectName(sName), classGrade(cGrade) {}
+
+		// Functions
 		void printSubject();
 		void subjectGradeChange(const double & newGrade);
 		void outSubInfo(std::ofstream & outfile);
@@ -51,7 +54,10 @@ class Student_Database {
 	private:
 		std::vector<std::vector<Student> > students;
 	public:
+		// Constructors
 		Student_Database() : students(13) {} // default constructor
+
+		// Functions
 		void printStudents();
 		void printGrade(int & grade);
 		void printDetailsFromData(const std::vector<Student>::iterator & stud);
@@ -65,7 +71,6 @@ class Student_Database {
 		bool validateGrade(const int & grade);
 		bool doesExist(int & grade, const std::vector<Student>::iterator & stud);
 		std::vector<Student>::iterator getStudent(int & grade, std::string & first, std::string & last);
-
 };
 
 #endif
