@@ -71,6 +71,11 @@ class Student_Database {
 		bool validateGrade(const int & grade);
 		bool doesExist(int & grade, const std::vector<Student>::iterator & stud);
 		std::vector<Student>::iterator getStudent(int & grade, std::string & first, std::string & last);
+
+		Student_Database & operator=(const Student_Database rhs) {
+			clear();
+			students.assign(rhs.students.begin(), rhs.students.end());
+		}
 };
 
 #endif
