@@ -86,16 +86,26 @@ customtkinter.set_default_color_theme("dark-blue")
 root = customtkinter.CTk()
 root.title("Calculator")
 
+
+root.rowconfigure(1, weight=1)  # Row with button frame will expand
+root.columnconfigure(0, weight=1)
+
 frameText = customtkinter.CTkFrame(master = root, height=150, fg_color="white")
 frameText.grid(row=0, column=0, padx=20, pady=(30,0), sticky="ew") 
+frameText.columnconfigure(0, weight=1)
 
 function = Func()
 
-label = customtkinter.CTkLabel(master=frameText, text="0.0", anchor="e", text_color="black", font=("Roboto", 30), height=90, width=400)
-label.grid(row=0, column=0, pady=12, padx=0, sticky="ew")
+label = customtkinter.CTkLabel(master=frameText, text="0.0", anchor="e", text_color="black", font=("Roboto", 30), height=90, justify="right")
+label.grid(row=0, column=0, pady=12, padx=(0, 20), sticky="ew")
 
 buttonFrame = customtkinter.CTkFrame(master=root)
 buttonFrame.grid(row=1, column=0, padx=20, pady=20)
+
+for i in range(4):
+    buttonFrame.columnconfigure(i, weight=1)
+for i in range(5):
+    buttonFrame.rowconfigure(i, weight=1)
 
 mainButtonDim = 95
 fontSize = 18
