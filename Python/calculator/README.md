@@ -19,9 +19,7 @@ To install CustomTkinter use:
 > pip install customtkinter
 
 ## Installation
-1. Clone this repository with:
-> git clone https://github.com/hunterpparsons/calculator.git
-> cd calculator app
+1. Install python files in this directory
 2. Ensure that CustomTkinter is installed using:
 > pip install customtkinter
 3. Run application using:
