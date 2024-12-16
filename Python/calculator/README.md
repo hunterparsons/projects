@@ -23,7 +23,7 @@ To install CustomTkinter use:
 2. Ensure that CustomTkinter is installed using:
 > pip install customtkinter
 3. Run application using:
-> main.py
+> python main.py
 
 ## Usage
 1. Start application as instructed above
