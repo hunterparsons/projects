@@ -1,3 +1,6 @@
 test
 trees
 .vscode
+venv.txt
+test.py
+.gitignore
