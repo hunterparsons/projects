@@ -1,9 +1,9 @@
 import customtkinter as ctk
 import get_weather as gw
 class WeatherApp:
-    # Pre :
-    # Post : 
-    # Purpose : 
+    # Pre : None
+    # Post : Creates basic info for the app, creates the root and sets title, and minimum window size calls function to create the rest of the app
+    # Purpose : Basic initializer for app
     def __init__(self, root):
         self.root = root
         self.root.title("Weather")
@@ -11,9 +11,9 @@ class WeatherApp:
         self.root.columnconfigure(0, weight=1)
         self.root.rowconfigure(1, weight=1)
         self.create_sub_rows()
-    # Pre :
-    # Post : 
-    # Purpose : 
+    # Pre : None
+    # Post : Clears current screen and creates basic layout of default screen, then calls functions to create the layout of each tab within the frame
+    # Purpose : To create the beginning screen and call functions to create smaller parts of it
     def create_sub_rows(self):
         self.clear()
         # Upper text
@@ -28,9 +28,9 @@ class WeatherApp:
         self.area.tab("International").columnconfigure(0, weight=1)
         self.create_us()
         self.create_international()
-    # Pre :
-    # Post : 
-    # Purpose : 
+    # Pre : None
+    # Post : Adds labels and entry boxes for the US tab
+    # Purpose : To add information for US tab
     def create_us(self):
         # City
         self.cityText = ctk.CTkLabel(master=self.area.tab("US"), text="City", justify="center")
@@ -53,9 +53,9 @@ class WeatherApp:
         self.city.bind("<Return>", self.update_gui_us)
         self.state.bind("<Return>", self.update_gui_us)
         self.zip.bind("<Return>", self.update_gui_us)
-    # Pre :
-    # Post : 
-    # Purpose : 
+    # Pre : None
+    # Post : Adds labels and entry boxes for the international tab
+    # Purpose : To add information for international tab
     def create_international(self):
         # City
         self.cityIntText = ctk.CTkLabel(master=self.area.tab("International"), text="City", justify="center")
@@ -72,39 +72,39 @@ class WeatherApp:
         goButton.grid(row=4, column=0, pady=10)
         self.cityInt.bind("<Return>", self.update_gui_int)
         self.country.bind("<Return>", self.update_gui_int)
-    # Pre :
-    # Post : 
-    # Purpose : 
+    # Pre : self.city, should be a real city inside of the corresponding state entered in self.state. If a ZIP is entered, then the ZIP should be valid. If all three are entered, the ZIP should correspond to the city and state.
+    # Post : Returns json with weather information in at the given location
+    # Purpose : To get weather information at a given location in the US
     def get_weather_us(self):
         weatherString = self.city.get() + ' ' + self.state.get() + ' ' + self.zip.get()
         return gw.get_weather(weatherString)
-    # Pre :
-    # Post : 
-    # Purpose : 
+    # Pre : self.cityInt should be a real city inside of the corresponding country entered in self.country. 
+    # Post : Returns json of with weather information in the given location
+    # Purpose : To get weather information at a given location internationally
     def get_weather_int(self):
         weatherString = self.cityInt.get() + ' ' + self.country.get()
         return gw.get_weather(weatherString)
-    # Pre :
-    # Post : 
-    # Purpose : 
+    # Pre : None
+    # Post : Removes all objects in self.root
+    # Purpose : To clear out all items in the root
     def clear(self):
         for item in self.root.winfo_children():
             item.destroy()
-    # Pre :
-    # Post : 
-    # Purpose : 
+    # Pre : None
+    # Post : Calls update_gui with the US weather info
+    # Purpose : To update the GUI correpsonding to US tab
     def update_gui_us(self, event=None):
         weatherInfo = self.get_weather_us()  # Gets the weather info
         self.update_gui(weatherInfo)
-    # Pre :
-    # Post : 
-    # Purpose : 
+    # Pre : None
+    # Post : Calls update_gui with the international weather info
+    # Purpose : To update the GUI correpsonding to international tab
     def update_gui_int(self, event=None):
         weatherInfo = self.get_weather_int()  # Gets the weather info
         self.update_gui(weatherInfo)
-    # Pre :
-    # Post : 
-    # Purpose : 
+    # Pre : None
+    # Post : Clears prior screen and updates GUI with information about the day's weather including temperature, feels like, humidity, conditions, precipitation, and alerts
+    # Purpose : To show the information that is needed for user to know the weather.
     def update_gui(self, weatherInfo):
         self.clear()
         # Extract weather data
