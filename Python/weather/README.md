@@ -1,6 +1,4 @@
-# Weather App (incomplete)
-
-Program currently works but is missing documentation
+# Weather App 
 
 ## Overview
 App that allows user to check weather in a specific area. You can check in the US with a state and town, or use the ZIP code. For international, provide Country and city.
